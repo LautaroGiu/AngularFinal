@@ -1,4 +1,3 @@
-<!-- abm-alumnos.component.html -->
 <div class="container">
   <h2>Gestión de Alumnos</h2>
 
@@ -11,7 +10,7 @@
     <button type="submit">Agregar Alumno</button>
   </form>
 
-  <table mat-table [dataSource]="alumnos" class="">
+  <table mat-table [dataSource]="alumnosDataSource" class="">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let alumno"> {{alumno.id}} </td>
