@@ -14,11 +14,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AlumnosRouting,
     FormsModule,
-    AbmAlumnosComponent,
     MatTableModule,
     MatCardModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AbmAlumnosComponent
   ]
 })
 export class AlumnosModule { }

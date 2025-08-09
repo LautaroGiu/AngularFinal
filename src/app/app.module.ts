@@ -20,15 +20,14 @@ import { AlumnosService } from './services/alumnos';
     AppRoutingModule,
     AlumnosModule,
     CursosModule,
-    AppComponent,
     InscripcionesModule,
     ReactiveFormsModule,
-    AbmAlumnosComponent,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
-  ],
+    MatTableModule,
+    AppComponent
+    ],
   providers: [],
   bootstrap: []
 })

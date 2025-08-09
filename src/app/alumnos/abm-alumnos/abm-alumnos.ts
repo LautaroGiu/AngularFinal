@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { AlumnosService } from '../../services/alumnos';
-import { Alumno } from './../../shared/alumnos.model';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, of } from 'rxjs';
+import { Alumno } from './../../shared/alumnos.model';
+import { AlumnosService } from '../../services/alumnos';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from "@angular/material/table";
 
 @Component({
   selector: 'app-abm-alumnos',
-  imports: [],
   templateUrl: './abm-alumnos.html',
-  styleUrls: ['./abm-alumnos.css']
+  styleUrls: ['./abm-alumnos.css'],
+  imports: [ReactiveFormsModule, MatTableModule],
 })
 export class AbmAlumnosComponent implements OnInit {
   alumnoForm: FormGroup;
@@ -22,7 +22,6 @@ export class AbmAlumnosComponent implements OnInit {
     private fb: FormBuilder,
     private alumnosService: AlumnosService
   ) {
-    // Se inicializa acá, dentro del constructor, NO antes
     this.alumnoForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -33,7 +32,7 @@ export class AbmAlumnosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.alumnosService.obtenerAlumnos().subscribe((a) => {
+      this.alumnosService.obtenerAlumnos().subscribe((a) => {
       this.alumnos = a;
       this.alumnosDataSource.data = a;
     });
@@ -50,11 +49,9 @@ export class AbmAlumnosComponent implements OnInit {
 
   editarAlumno(alumno: Alumno): void {
     console.log('Editar alumno:', alumno);
-    // lógica de edición opcional
   }
 
   eliminarAlumno(alumno: Alumno): void {
     console.log('Eliminar alumno:', alumno);
-    // lógica de eliminación opcional
   }
 }
