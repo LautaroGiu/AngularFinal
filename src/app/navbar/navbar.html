@@ -1,12 +1,9 @@
-<nav class="sidebar">
-  <h3>Gestión Académica</h3>
+<nav class="navbar">
   <ul>
-    <li><a routerLink="/alumnos" routerLinkActive="active">Alumnos</a></li>
-    <li><a routerLink="/cursos" routerLinkActive="active">Cursos</a></li>
-    <li><a routerLink="/inscripciones" routerLinkActive="active">Inscripciones</a></li>
+    <li><a routerLink="/alumnos" routerLinkActive="activo">Alumnos</a></li>
+    <li><a routerLink="/cursos" routerLinkActive="activo">Cursos</a></li>
+    <li><a routerLink="/inscripciones" routerLinkActive="activo">Inscripciones</a></li>
   </ul>
 </nav>
 
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
+<router-outlet></router-outlet>

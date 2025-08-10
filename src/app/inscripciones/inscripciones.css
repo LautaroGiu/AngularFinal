@@ -7,8 +7,20 @@ table {
 th, td {
   border: 1px solid #ccc;
   padding: 10px;
+  text-align: left;
 }
 
 button {
   margin-right: 5px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
 }

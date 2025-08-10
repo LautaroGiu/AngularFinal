@@ -1,7 +1,9 @@
 <div class="container">
   <h2>Gestión de Inscripciones</h2>
 
-  <form [formGroup]="inscripcionForm" (ngSubmit)="nuevaInscripcion()">
+  <form [formGroup]="inscripcionForm" 
+  (ngSubmit)="nuevaInscripcion()"
+  class="form-container">
     <input formControlName="alumno" placeholder="Alumno" required>
     <input formControlName="curso" placeholder="Curso" required>
     <input type="date" formControlName="fecha" required>
@@ -10,7 +12,7 @@
 
   <table cellpadding="5">
     <thead>
-      <tr>
+      <tr class="container-tr">
         <th>ID</th>
         <th>Alumno</th>
         <th>Curso</th>

@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterOutlet],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrls: ['./navbar.css'],
+  imports: [RouterOutlet],
 })
 export class Navbar {
+  paginaActual = '';
 
+  constructor(private router: Router) {}
+
+  irA(pagina: string) {
+    this.paginaActual = pagina;
+    this.router.navigate([`/${pagina}`]);
+  }
 }
