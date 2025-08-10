@@ -14,7 +14,7 @@ interface Inscripcion {
   selector: 'app-inscripciones',
   templateUrl: './inscripciones.html',
   styleUrls: ['./inscripciones.css'],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule], //NO OLVIDES IMPORTAR LO NECESARIO
 })
 export class Inscripciones implements OnInit {
   inscripciones: Inscripcion[] = [];
@@ -60,6 +60,7 @@ export class Inscripciones implements OnInit {
     this.inscripcionForm.reset();
   }
 
+  // Revisar si no hay errores al editar la inscrip.
   editarInscripcion(inscripcion: Inscripcion): void {
     this.editando = true;
     this.inscripcionEnEdicion = inscripcion.id;

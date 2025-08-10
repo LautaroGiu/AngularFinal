@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-abm-alumnos',
   templateUrl: './abm-alumnos.html',
   styleUrls: ['./abm-alumnos.css'],
-  imports: [ReactiveFormsModule, CommonModule, MatTableModule],
+  imports: [ReactiveFormsModule, CommonModule, MatTableModule], //NO OLVIDES IMPORTAR LO NECESARIO
 })
 export class AbmAlumnosComponent implements OnInit {
   alumnoForm: FormGroup;
@@ -20,7 +20,9 @@ export class AbmAlumnosComponent implements OnInit {
   columnas: string[] = ['id', 'nombre', 'apellido', 'email', 'dni', 'acciones'];
 
   mostrarLista = false;
+// La lista de alumnos cambiará con un btn
 
+// Constructor para inicializar el formulario y el servicio
   constructor(
     private fb: FormBuilder,
     private alumnosService: AlumnosService
@@ -70,7 +72,7 @@ export class AbmAlumnosComponent implements OnInit {
 
   toggleLista(): void {
     if (!this.mostrarLista) {
-    // Cuando se presiona "Ver", cargar lista desde el servicio
+    // Cuando se presiona (Ver) carga la lista desde el servicio
       this.cargarAlumnos();
     }
     this.mostrarLista = !this.mostrarLista;

@@ -9,6 +9,7 @@ export class Alumnos {
   alumnoForm: FormGroup;
   alumnos: any[] = [];
 
+// Inicializo el formulario
   constructor(private fb: FormBuilder) {
     this.alumnoForm = this.fb.group({
       nombre: [''],
@@ -28,7 +29,7 @@ export class Alumnos {
   editarAlumno(alumno: any) {
     this.alumnoForm.patchValue(alumno);
     this.eliminarAlumno(alumno); 
-    // Evitamos duplicados al editar
+    // Evitamos duplicados al editar(No se si esta bien, ver)
   }
 
   eliminarAlumno(alumno: any) {
