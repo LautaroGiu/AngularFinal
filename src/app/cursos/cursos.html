@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Gestión de Cursos</h2>
+
+  <form [formGroup]="cursoForm" (ngSubmit)="agregarCurso()">
+    <input formControlName="nombre" placeholder="Nombre del curso" required>
+    <button type="submit">{{ editando ? 'Guardar Cambios' : 'Agregar Curso' }}</button>
+  </form>
+
+  <table cellpadding="5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos">
+        <td>{{ curso.id }}</td>
+        <td>{{ curso.nombre }}</td>
+        <td>
+          <button type="button" (click)="editarCurso(curso)">Editar</button>
+          <button type="button" (click)="eliminarCurso(curso.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,34 @@
-<p>inscripciones works!</p>
+<div class="container">
+  <h2>Gestión de Inscripciones</h2>
+
+  <form [formGroup]="inscripcionForm" (ngSubmit)="nuevaInscripcion()">
+    <input formControlName="alumno" placeholder="Alumno" required>
+    <input formControlName="curso" placeholder="Curso" required>
+    <input type="date" formControlName="fecha" required>
+    <button type="submit">{{ editando ? 'Guardar Cambios' : 'Agregar Inscripción' }}</button>
+  </form>
+
+  <table cellpadding="5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Alumno</th>
+        <th>Curso</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inscripcion of inscripciones">
+        <td>{{ inscripcion.id }}</td>
+        <td>{{ inscripcion.alumno }}</td>
+        <td>{{ inscripcion.curso }}</td>
+        <td>{{ inscripcion.fecha }}</td>
+        <td>
+          <button type="button" (click)="editarInscripcion(inscripcion)">Editar</button>
+          <button type="button" (click)="eliminarInscripcion(inscripcion.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

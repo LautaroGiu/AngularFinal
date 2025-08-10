@@ -1,55 +1,72 @@
 <div class="container">
   <h2>Gestión de Alumnos</h2>
 
+  <!-- Formulario -->
   <form [formGroup]="alumnoForm" (ngSubmit)="agregarAlumno()">
     <input formControlName="nombre" placeholder="Nombre" required>
     <input formControlName="apellido" placeholder="Apellido" required>
     <input formControlName="email" placeholder="Email" required>
     <input formControlName="dni" placeholder="DNI" required>
-    <input formControlName="promedio" placeholder="Promedio" required>
+    <input formControlName="promedio" type="number" placeholder="Promedio" required>
     <button type="submit">Agregar Alumno</button>
   </form>
 
-  <table mat-table [dataSource]="alumnosDataSource" class="">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.id}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.nombre}} </td>
-    </ng-container>
+  <hr>
 
-    <ng-container matColumnDef="apellido">
-      <th mat-header-cell *matHeaderCellDef> Apellido </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.apellido}} </td>
-    </ng-container>
+  <!-- Botón para mostrar u ocultar lista -->
+  <button type="button" (click)="toggleLista()">
+    {{ mostrarLista ? 'Ocultar Lista de Alumnos' : 'Ver Lista de Alumnos' }}
+  </button>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.email}} </td>
-    </ng-container>
+  <!-- Lista de alumnos -->
+  <div *ngIf="mostrarLista; else sinLista">
+    <table mat-table [dataSource]="alumnosDataSource" class="mat-elevation-z8">
+      <!-- Columnas -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.id }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="dni">
-      <th mat-header-cell *matHeaderCellDef> DNI </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.dni}} </td>
-    </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.nombre }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="promedio">
-      <th mat-header-cell *matHeaderCellDef> Promedio </th>
-      <td mat-cell *matCellDef="let alumno"> {{alumno.promedio}} </td>
-    </ng-container>
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.apellido }} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef> Acciones </th>
-      <td mat-cell *matCellDef="let alumno">
-        <button (click)="editarAlumno(alumno)">Editar</button>
-        <button (click)="eliminarAlumno(alumno)">Eliminar</button>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.email }} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-  </table>
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.dni }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="promedio">
+        <th mat-header-cell *matHeaderCellDef> Promedio </th>
+        <td mat-cell *matCellDef="let alumno"> {{ alumno.promedio }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let alumno">
+          <button (click)="editarAlumno(alumno)">Editar</button>
+          <button (click)="eliminarAlumno(alumno)">Eliminar</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+  </div>
+
+  <!-- Mensaje si no está visible -->
+  <ng-template #sinLista>
+    <p>Presiona "Ver Lista de Alumnos" para mostrarla.</p>
+  </ng-template>
 </div>

@@ -5,18 +5,21 @@ import { Alumno } from './../../shared/alumnos.model';
 import { AlumnosService } from '../../services/alumnos';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from "@angular/material/table";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-abm-alumnos',
   templateUrl: './abm-alumnos.html',
   styleUrls: ['./abm-alumnos.css'],
-  imports: [ReactiveFormsModule, MatTableModule],
+  imports: [ReactiveFormsModule, CommonModule, MatTableModule],
 })
 export class AbmAlumnosComponent implements OnInit {
   alumnoForm: FormGroup;
   alumnos: Alumno[] = [];
   alumnosDataSource = new MatTableDataSource<Alumno>();
   columnas: string[] = ['id', 'nombre', 'apellido', 'email', 'dni', 'acciones'];
+
+  mostrarLista = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,9 +41,16 @@ export class AbmAlumnosComponent implements OnInit {
     });
   }
 
+    cargarAlumnos(): void {
+    this.alumnosService.obtenerAlumnos().subscribe((a) => {
+      this.alumnos = a;
+      this.alumnosDataSource.data = a;
+    });
+  }
+
   agregarAlumno(): void {
     const nuevoAlumno = this.alumnoForm.value;
-    this.alumnosService.agregarAlumno(nuevoAlumno).subscribe((a) => {
+      this.alumnosService.agregarAlumno(nuevoAlumno).subscribe((a) => {
       this.alumnos.push(a);
       this.alumnosDataSource.data = [...this.alumnos];
       this.alumnoForm.reset();
@@ -48,10 +58,21 @@ export class AbmAlumnosComponent implements OnInit {
   }
 
   editarAlumno(alumno: Alumno): void {
-    console.log('Editar alumno:', alumno);
+    this.alumnoForm.patchValue(alumno);
   }
 
   eliminarAlumno(alumno: Alumno): void {
-    console.log('Eliminar alumno:', alumno);
+      this.alumnosService.eliminarAlumno(alumno.id).subscribe(() => {
+      this.alumnos = this.alumnos.filter(a => a.id !== alumno.id);
+      this.alumnosDataSource.data = [...this.alumnos];
+    });
   }
+
+  toggleLista(): void {
+    if (!this.mostrarLista) {
+    // Cuando se presiona "Ver", cargar lista desde el servicio
+      this.cargarAlumnos();
+    }
+    this.mostrarLista = !this.mostrarLista;
+}
 }

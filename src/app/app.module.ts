@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { AlumnosService } from './services/alumnos';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { AlumnosService } from './services/alumnos';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    AppComponent
+    AppComponent,
+    RouterModule
     ],
   providers: [],
   bootstrap: []
