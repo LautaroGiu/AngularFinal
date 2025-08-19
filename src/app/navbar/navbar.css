@@ -1,32 +1,41 @@
-.navbar {
-  background-color: #2c3e50;
-  padding: 10px;
+.sidebar {
+  width: 200px;
+  background: #f4f4f4;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-.navbar ul {
-  display: flex;
+.sidebar ul {
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 
-.navbar li {
-  margin-right: 15px;
+.sidebar li {
+  margin: 15px 0;
 }
 
-.navbar button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 8px 12px;
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
-.navbar button:hover {
-  background: rgba(255, 255, 255, 0.1);
+.sidebar a.active {
+  color: #007bff;
+}
+.sidebar a:hover {
+  color: #0056b3;
 }
 
-.activo {
-  border-bottom: 2px solid yellow;
+.li-1{
+
+}
+.li-2{
+
+}
+.li-3{
+  
 }

@@ -1,38 +1,31 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { Alumno } from '../shared/alumnos.model';
 
 @Component({
   selector: 'app-alumnos',
-  templateUrl: './alumnos.html'
+  templateUrl: './alumnos.html',
+  imports: [FormsModule, CommonModule]
 })
-export class Alumnos {
-  alumnoForm: FormGroup;
-  alumnos: any[] = [];
+export class Alumnos{
+  alumnos: Alumno[] = []
 
-// Inicializo el formulario
-  constructor(private fb: FormBuilder) {
-    this.alumnoForm = this.fb.group({
-      nombre: [''],
-      apellido: [''],
-      email: [''],
-      dni: [''],
-      promedio: ['']
-    });
+  constructor(private router: Router) {}
+
+  borrarAlumno(id: number) {
+    this.alumnos = this.alumnos.filter(al => al.id !== id);
+  }
+
+  modificarAlumno(id: number) {
+    this.router.navigate(['/abm-alumnos', id]);
   }
 
   agregarAlumno() {
-    const nuevoAlumno = this.alumnoForm.value;
-    this.alumnos.push(nuevoAlumno);
-    this.alumnoForm.reset();
-  }
-
-  editarAlumno(alumno: any) {
-    this.alumnoForm.patchValue(alumno);
-    this.eliminarAlumno(alumno); 
-    // Evitamos duplicados al editar(No se si esta bien, ver)
-  }
-
-  eliminarAlumno(alumno: any) {
-    this.alumnos = this.alumnos.filter(a => a !== alumno);
+    this.router.navigate(['/abm-alumnos']);
   }
 }

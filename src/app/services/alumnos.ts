@@ -1,35 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Alumno } from '../shared/alumnos.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Alumno } from "../shared/alumnos.model";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AlumnosService {
-  private alumnos: Alumno[] = [];
-  private nextId = 1;
+  private apiUrl = 'https://66c0b6f3ba6f27ca9a55d697.mockapi.io/alumnos';
 
-  obtenerAlumnos(): Observable<Alumno[]> {
-    return of(this.alumnos);
+  constructor(private http: HttpClient) {}
+
+  // Obtener todos los alumnos
+  getAlumnos(): Observable<Alumno[]> {
+    return this.http.get<Alumno[]>(this.apiUrl);
   }
 
-  agregarAlumno(alumno: Alumno): Observable<Alumno> {
-    const nuevoAlumno = { ...alumno, id: this.nextId++ };
-    this.alumnos.push(nuevoAlumno);
-    return of(nuevoAlumno);
+  // Obtener un alumno por ID
+  getAlumnoById(id: number): Observable<Alumno> {
+    return this.http.get<Alumno>(`${this.apiUrl}/${id}`);
   }
 
-  eliminarAlumno(id: number): Observable<boolean> {
-    const inicial = this.alumnos.length;
-    this.alumnos = this.alumnos.filter(a => a.id !== id);
-    return of(this.alumnos.length < inicial);
+  // Agregar un alumno
+  agregarAlumno(alumno: Omit<Alumno, 'id'>): Observable<Alumno> {
+    return this.http.post<Alumno>(this.apiUrl, alumno);
   }
 
-  editarAlumno(alumnoEditado: Alumno): Observable<Alumno> {
-    const index = this.alumnos.findIndex(a => a.id === alumnoEditado.id);
-    if (index !== -1) {
-      this.alumnos[index] = alumnoEditado;
-      return of(alumnoEditado);
-    } else {
-      return of(null as any);
-    }
+  // Modificar un alumno
+  modificarAlumno(alumno: Alumno): Observable<Alumno> {
+    return this.http.put<Alumno>(`${this.apiUrl}/${alumno.id}`, alumno);
+  }
+
+  // Eliminar un alumno
+  borrarAlumno(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

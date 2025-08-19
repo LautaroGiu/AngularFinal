@@ -1,0 +1,23 @@
+<h2>Lista de Alumnos</h2>
+
+<button (click)="agregarAlumno()"> Agregar Alumno</button>
+
+<table cellpadding="6" cellspacing="0">
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Email</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let alumno of alumnos">
+    <td>{{ alumno.id }}</td>
+    <td>{{ alumno.nombre }}</td>
+    <td>{{ alumno.apellido }}</td>
+    <td>{{ alumno.email }}</td>
+    <td>
+      <button (click)="modificarAlumno(alumno.id)"> Modificar</button>
+      <button (click)="borrarAlumno(alumno.id)"> Borrar</button>
+    </td>
+  </tr>
+</table>
