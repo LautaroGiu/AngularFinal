@@ -1,19 +1,34 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../services/auth'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
-  imports: [RouterOutlet],
+  imports: [RouterModule, CommonModule]
 })
 export class Navbar {
   paginaActual = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router
+  ) {}
 
-  irA(pagina: string) {
-    this.paginaActual = pagina;
-    this.router.navigate([`/${pagina}`]);
+  loginAdmin(): void {
+    this.auth.loginComoAdmin();
+    this.router.navigate(['/alumnos']);
+  }
+
+  loginUser(): void {
+    this.auth.loginComoUsuario();
+    this.router.navigate(['/alumnos']);
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -5,9 +5,9 @@ import { Navbar} from "./navbar/navbar";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AbmAlumnosComponent, Navbar],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  imports: [RouterOutlet, AbmAlumnosComponent, Navbar]
 })
 export class AppComponent {
   protected readonly title = signal('ProyectoFinal');

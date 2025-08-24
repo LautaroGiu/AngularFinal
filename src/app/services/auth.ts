@@ -2,29 +2,48 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../shared/usuario.model';
 
+export type Rol = 'ADMIN' | 'USER' | null;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private usuarioActual$ = new BehaviorSubject<Usuario | null>(null);
+  private rol: Rol = null;
 
-  login(usuario: Usuario) {
-    this.usuarioActual$.next(usuario);
+  loginComoAdmin(): void {
+    this.rol = 'ADMIN';
+    localStorage.setItem('rol', 'ADMIN');
   }
 
-  logout() {
-    this.usuarioActual$.next(null);
+  loginComoUsuario(): void {
+    this.rol = 'USER';
+    localStorage.setItem('rol', 'USER');
   }
 
-  getUsuarioActual(): Observable<Usuario | null> {
-    return this.usuarioActual$.asObservable();
+  logout(): void {
+    this.rol = null;
+    localStorage.removeItem('rol');
   }
 
-  getRolActual(): 'ADMIN' | 'USER' | null {
-    return this.usuarioActual$.value?.rol ?? null;
+  getRolActual(): Rol {
+    if (!this.rol) {
+      const guardado = localStorage.getItem('rol');
+      if (guardado === 'ADMIN' || guardado === 'USER') {
+        this.rol = guardado;
+      }
+    }
+    return this.rol;
   }
 
-  esAdmin(): boolean {
+  isAdmin(): boolean {
     return this.getRolActual() === 'ADMIN';
+  }
+
+  isUser(): boolean {
+    return this.getRolActual() === 'USER';
+  }
+
+  isLoggedIn(): boolean {
+    return this.getRolActual() !== null;
   }
 }

@@ -15,10 +15,9 @@ import { AlumnosService } from './services/alumnos';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { Navbar } from './navbar/navbar';
-
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,12 +29,14 @@ import { Navbar } from './navbar/navbar';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    AppComponent,
     RouterModule,
     HttpClientModule,
-    Navbar
+    Navbar, 
+    AppComponent,
+    AbmAlumnosComponent,
+    FormsModule
     ],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
 })
 export class AppModule { }

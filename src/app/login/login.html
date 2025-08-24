@@ -1,0 +1,16 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+
+  <div>
+    <label>
+      <input type="radio" name="rol" [(ngModel)]="rolSeleccionado" value="ADMIN">
+      Administrador
+    </label>
+    <label>
+      <input type="radio" name="rol" [(ngModel)]="rolSeleccionado" value="USER">
+      Usuario
+    </label>
+  </div>
+
+  <button (click)="login()">Ingresar</button>
+</div>

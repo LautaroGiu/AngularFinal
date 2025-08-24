@@ -1,9 +1,25 @@
-<nav class="navbar">
+<nav>
   <ul>
-    <li class="li-1"><a routerLink="/alumnos" routerLinkActive="activo">Alumnos</a></li>
-    <li class="li-2"><a routerLink="/cursos" routerLinkActive="activo">Cursos</a></li>
-    <li class="li-3"><a routerLink="/inscripciones" routerLinkActive="activo">Inscripciones</a></li>
-  </ul>
-</nav>
+    <!-- ADMIN -->
+    <ng-container *ngIf="auth.isAdmin()">
+      <li><a routerLink="/alumnos">Gestionar Alumnos</a></li>
+      <li><a routerLink="/cursos">Gestionar Cursos</a></li>
+      <li><a routerLink="/inscripciones">Gestionar Inscripciones</a></li>
+      <li><a routerLink="/usuarios">Usuarios</a></li>
+    </ng-container>
 
-<router-outlet></router-outlet>
+    <!-- USER -->
+    <ng-container *ngIf="auth.isUser()">
+      <li><a routerLink="/alumnos">Listar Alumnos</a></li>
+      <li><a routerLink="/cursos">Listar Cursos</a></li>
+      <li><a routerLink="/inscripciones">Inscripciones</a></li>
+    </ng-container>
+  </ul>
+
+  <!-- Botones de prueba -->
+  <div class="auth-buttons">
+    <button (click)="loginAdmin()">Login Admin</button>
+    <button (click)="loginUser()">Login Usuario</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>
