@@ -1,13 +1,22 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AbmAlumnosComponent } from "./alumnos/abm-alumnos/abm-alumnos";
 import { Navbar} from "./navbar/navbar";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Alumnos } from './alumnos/alumnos';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
-  imports: [RouterOutlet, AbmAlumnosComponent, Navbar]
+  styleUrls: ['./app.css'],
+  standalone: true,
+  imports: 
+  [
+    RouterOutlet, 
+    Alumnos,
+    Navbar,
+    FormsModule,
+    ReactiveFormsModule,
+  ]
 })
 export class AppComponent {
   protected readonly title = signal('ProyectoFinal');

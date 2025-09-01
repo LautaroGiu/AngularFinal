@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { AbmAlumnosComponent } from './alumnos/abm-alumnos/abm-alumnos';
+import { Alumnos } from './alumnos/alumnos';
 import { Cursos } from './cursos/cursos';
 import { Inscripciones } from './inscripciones/inscripciones';
 
 export const routes: Routes = [
+  { path: 'alumnos', component: Alumnos },
   { path: 'cursos', component: Cursos },
   { path: 'inscripciones', component: Inscripciones },
   { path: '', redirectTo: '/alumnos', pathMatch: 'full' },

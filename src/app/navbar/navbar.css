@@ -1,8 +1,9 @@
 .sidebar {
-  width: 200px;
-  background: #f4f4f4;
-  padding: 20px;
+  width: 220px;
+  background: #333;
+  color: #fff;
   height: 100vh;
+  padding: 15px;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,24 +19,30 @@
 }
 
 .sidebar a {
+  color: white;
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
 }
 
 .sidebar a.active {
-  color: #007bff;
-}
-.sidebar a:hover {
-  color: #0056b3;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-.li-1{
-
+.auth-buttons {
+  margin-top: 20px;
 }
-.li-2{
 
+button {
+  display: block;
+  margin: 5px 0;
+  width: 100%;
+  padding: 8px;
+  background: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
-.li-3{
-  
+
+button:hover {
+  background: #777;
 }

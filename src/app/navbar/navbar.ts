@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth'; 
 import { CommonModule } from '@angular/common';
 
@@ -7,28 +7,24 @@ import { CommonModule } from '@angular/common';
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
+  standalone: true,
   imports: [RouterModule, CommonModule]
 })
-export class Navbar {
-  paginaActual = '';
+export class Navbar implements OnInit {
+  rol: string | null = null;
+  isLoggedIn: boolean = false;
 
-  constructor(
-    public auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  loginAdmin(): void {
-    this.auth.loginComoAdmin();
-    this.router.navigate(['/alumnos']);
-  }
-
-  loginUser(): void {
-    this.auth.loginComoUsuario();
-    this.router.navigate(['/alumnos']);
+  ngOnInit(): void {
+    this.isLoggedIn = this.authService.isAuthenticated();
+    this.rol = this.authService.getUserRole();
   }
 
   logout(): void {
-    this.auth.logout();
+    this.authService.logout();
+    this.isLoggedIn = false;
+    this.rol = null;
     this.router.navigate(['/login']);
   }
 }

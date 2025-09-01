@@ -14,6 +14,7 @@ interface Inscripcion {
   selector: 'app-inscripciones',
   templateUrl: './inscripciones.html',
   styleUrls: ['./inscripciones.css'],
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule], //NO OLVIDES IMPORTAR LO NECESARIO
 })
 export class Inscripciones implements OnInit {

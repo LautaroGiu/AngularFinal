@@ -11,6 +11,7 @@ interface Curso {
   selector: 'app-cursos',
   templateUrl: './cursos.html',
   styleUrls: ['./cursos.css'],
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule], //NO OLVIDES IMPORTAR LO NECESARIO
 })
 export class Cursos implements OnInit {

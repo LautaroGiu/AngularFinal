@@ -1,8 +1,11 @@
-export type Rol = 'ADMIN' | 'USER';
+export type Perfil = 'ADMIN' | 'USER';
 
 export interface Usuario {
-  id: number;
-  username: string;
+  id: string;
+  email: string;
   password: string;
-  rol: Rol;
+  nombre: string;
+  direccion: string;
+  telefono: string;
+  perfil: Perfil;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth';
 import { CommonModule } from '@angular/common';
@@ -8,28 +8,28 @@ import { CommonModule } from '@angular/common';
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  imports: [CommonModule,FormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, FormsModule, CommonModule]
 })
-export class LoginComponent {
-  rolSeleccionado: 'ADMIN' | 'USER' | null = null;
+export class Login {
+  form: FormGroup;
+  error: string | null = null;
 
-  constructor(private auth: AuthService, private router: Router) {}
-
-  login() {
-    if (this.rolSeleccionado === 'ADMIN') {
-      this.auth.loginComoAdmin();
-      this.router.navigate(['/usuarios']); 
-    } else if (this.rolSeleccionado === 'USER') {
-      this.auth.loginComoUsuario();
-      this.router.navigate(['/home']); 
-    } else {
-      alert('Selecciona un rol para iniciar sesión');
-    }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.form = this.fb.group({
+      email: ['admin@app.com', [Validators.required, Validators.email]],
+      password: ['admin', Validators.required],
+    });
   }
 
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+  submit() {
+    if (this.form.invalid) return;
+
+    const { email, password } = this.form.value;
+
+    this.authService.login(email, password).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: (err: any) => this.error = err.error?.message || 'Error en el login'
+    });
   }
 }
-

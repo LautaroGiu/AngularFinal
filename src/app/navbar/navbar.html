@@ -1,25 +1,13 @@
-<nav>
-  <ul>
-    <!-- ADMIN -->
-    <ng-container *ngIf="auth.isAdmin()">
-      <li><a routerLink="/alumnos">Gestionar Alumnos</a></li>
-      <li><a routerLink="/cursos">Gestionar Cursos</a></li>
-      <li><a routerLink="/inscripciones">Gestionar Inscripciones</a></li>
-      <li><a routerLink="/usuarios">Usuarios</a></li>
-    </ng-container>
-
-    <!-- USER -->
-    <ng-container *ngIf="auth.isUser()">
-      <li><a routerLink="/alumnos">Listar Alumnos</a></li>
-      <li><a routerLink="/cursos">Listar Cursos</a></li>
-      <li><a routerLink="/inscripciones">Inscripciones</a></li>
-    </ng-container>
-  </ul>
-
-  <!-- Botones de prueba -->
-  <div class="auth-buttons">
-    <button (click)="loginAdmin()">Login Admin</button>
-    <button (click)="loginUser()">Login Usuario</button>
-    <button (click)="logout()">Logout</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item"><a class="nav-link" routerLink="/alumnos">Alumnos</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/cursos">Cursos</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/inscripciones">Inscripciones</a></li>
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="!isLoggedIn" class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
+      <li *ngIf="isLoggedIn" class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+    </ul>
   </div>
 </nav>

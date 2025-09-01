@@ -1,13 +1,24 @@
 <h2>Lista de Alumnos</h2>
 
-<button (click)="agregarAlumno()"> Agregar Alumno</button>
+<form (ngSubmit)="guardarAlumno()" class="form-group">
+  <input type="text" placeholder="Nombre" [(ngModel)]="alumnoForm.nombre" name="nombre" required>
+  <input type="text" placeholder="Apellido" [(ngModel)]="alumnoForm.apellido" name="apellido" required>
+  <input type="email" placeholder="Email" [(ngModel)]="alumnoForm.email" name="email" required>
+  <input type="text" placeholder="DNI" [(ngModel)]="alumnoForm.dni" name="dni" required>
+  <input type="number" placeholder="Promedio" [(ngModel)]="alumnoForm.promedio" name="promedio" required>
 
-<table cellpadding="6" cellspacing="0">
+  <button type="submit">{{ editando ? 'Actualizar Alumno' : 'Agregar Alumno' }}</button>
+  <button type="button" (click)="limpiarFormulario()">Cancelar</button>
+</form>
+
+<table cellpadding="6" cellspacing="0" class="table">
   <tr>
     <th>ID</th>
     <th>Nombre</th>
     <th>Apellido</th>
     <th>Email</th>
+    <th>DNI</th>
+    <th>Promedio</th>
     <th>Acciones</th>
   </tr>
   <tr *ngFor="let alumno of alumnos">
@@ -15,9 +26,11 @@
     <td>{{ alumno.nombre }}</td>
     <td>{{ alumno.apellido }}</td>
     <td>{{ alumno.email }}</td>
+    <td>{{ alumno.dni }}</td>
+    <td>{{ alumno.promedio }}</td>
     <td>
-      <button (click)="modificarAlumno(alumno.id)"> Modificar</button>
-      <button (click)="borrarAlumno(alumno.id)"> Borrar</button>
+      <button (click)="editarAlumno(alumno)">Editar</button>
+      <button (click)="borrarAlumno(alumno.id)">Borrar</button>
     </td>
   </tr>
 </table>

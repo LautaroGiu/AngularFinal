@@ -1,24 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos';
-import { AlumnosRouting } from './alumnos-routing.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { NgModule } from '@angular/core';
+// import { CommonModule } from '@angular/common';
+// import { AlumnosRoutingModule } from './alumnos-routing.module';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    AlumnosRouting,
-    FormsModule,
-    MatTableModule,
-    MatCardModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    AbmAlumnosComponent
-  ]
-})
-export class AlumnosModule { }
+// import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
+// import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component';
+
+// @NgModule({
+
+//   imports: [
+//     CommonModule,
+//     FormsModule,
+//     ReactiveFormsModule,
+//     AlumnosRoutingModule
+//   ]
+// })
+// export class AlumnosModule {}

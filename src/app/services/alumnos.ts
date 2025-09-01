@@ -7,7 +7,7 @@ import { Alumno } from "../shared/alumnos.model";
   providedIn: 'root'
 })
 export class AlumnosService {
-  private apiUrl = 'https://66c0b6f3ba6f27ca9a55d697.mockapi.io/alumnos';
+  private apiUrl = 'https://68b4c85f45c901678771232c.mockapi.io/alumnos';
 
   constructor(private http: HttpClient) {}
 
