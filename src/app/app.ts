@@ -12,7 +12,6 @@ import { Alumnos } from './alumnos/alumnos';
   imports: 
   [
     RouterOutlet, 
-    Alumnos,
     Navbar,
     FormsModule,
     ReactiveFormsModule,

@@ -1,1 +1,41 @@
-<p>usuarios works!</p>
+<div class="container">
+  <h2>Gestión de Usuarios (Solo Admin)</h2>
+
+  <form (ngSubmit)="guardarUsuario()">
+    <input placeholder="Email" [(ngModel)]="nuevoUsuario.email" name="email" required>
+    <input type="password" placeholder="Password" [(ngModel)]="nuevoUsuario.password" name="password" required>
+    <input placeholder="Nombre" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required>
+    <input placeholder="Dirección" [(ngModel)]="nuevoUsuario.direccion" name="direccion">
+    <input placeholder="Teléfono" [(ngModel)]="nuevoUsuario.telefono" name="telefono">
+    <select [(ngModel)]="nuevoUsuario.perfil" name="perfil">
+      <option value="ADMIN">ADMIN</option>
+      <option value="USER">USER</option>
+    </select>
+    <button type="submit">{{ editando ? 'Guardar Cambios' : 'Agregar Usuario' }}</button>
+  </form>
+
+  <table cellpadding="5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Perfil</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.perfil }}</td>
+        <td>
+          <button (click)="editarUsuario(usuario)">Editar</button>
+          <button (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button routerLink="/alumnos">Ir a Alumnos</button>

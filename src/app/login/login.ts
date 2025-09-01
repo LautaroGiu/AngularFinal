@@ -28,7 +28,13 @@ export class Login {
     const { email, password } = this.form.value;
 
     this.authService.login(email, password).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => {
+        if (this.authService.isAdmin()) {
+          this.router.navigate(['/usuarios']); // admin va a usuarios
+        } else {
+          this.router.navigate(['/alumnos']); // usuario normal va a alumnos
+        }
+      },
       error: (err: any) => this.error = err.error?.message || 'Error en el login'
     });
   }
