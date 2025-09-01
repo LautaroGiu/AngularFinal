@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'inscripciones', loadChildren: () => import('./inscripciones/inscripciones-module').then(m => m.InscripcionesModule) },
   { path: 'usuarios', loadChildren: () => import('./usuarios/usuarios-module').then(m => m.UsuariosModule) },
 
-  { path: '', pathMatch: 'full', redirectTo: 'alumnos' },
-  { path: '**', redirectTo: 'alumnos' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
